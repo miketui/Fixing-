@@ -206,6 +206,26 @@ def fix_xhtml_file(path: Path) -> None:
             html_tag['xmlns'] = 'http://www.w3.org/1999/xhtml'
         if not html_tag.has_attr('xmlns:epub'):
             html_tag['xmlns:epub'] = 'http://www.idpf.org/2007/ops'
+    
+    # Fix invalid role attributes by removing unsupported ones
+    role_replacements = {
+        'doc-part': None,  # Remove this role
+        'doc-chapter': None,  # Remove this role  
+        'doc-endnotes': 'complementary',  # Change to valid role
+        'doc-footnote': 'doc-footnote',  # Keep valid ones
+        'doc-pullquote': 'doc-pullquote',  # Keep valid ones
+        'doc-tip': 'doc-tip',  # Keep valid ones
+        'group': None,  # Remove - just use semantic markup
+    }
+    
+    for tag in soup.find_all(attrs={'role': True}):
+        role = tag.get('role')
+        if role in role_replacements:
+            if role_replacements[role] is None:
+                del tag['role']  # Remove the role attribute
+            else:
+                tag['role'] = role_replacements[role]  # Replace with valid role
+    
     # Move <hr> tags out of lists
     for hr in soup.find_all('hr'):
         parent = hr.parent
@@ -261,6 +281,73 @@ def populate_quiz_options(path: Path) -> None:
     if modified:
         path.write_text(str(soup), encoding='utf-8')
         logging.info(f"Populated missing quiz options in {path.name}")
+
+
+def fix_toc_structure(path: Path) -> None:
+    """Fix the TOC structure to use proper nav elements with ol."""
+    text = path.read_text(encoding='utf-8')
+    soup = BeautifulSoup(text, 'lxml')
+    
+    # Find the toc-container div and replace it with proper nav structure
+    toc_container = soup.find('div', class_='toc-container')
+    if toc_container:
+        # Create new nav element with proper structure
+        nav = soup.new_tag('nav', **{'epub:type': 'toc', 'role': 'doc-toc'})
+        ol = soup.new_tag('ol')
+        
+        # Find all toc-entry divs and convert to li elements
+        for toc_entry in toc_container.find_all('div', class_='toc-entry'):
+            li = soup.new_tag('li')
+            # Find the link in this entry
+            entry_title = toc_entry.find('div', class_='entry-title')
+            if entry_title:
+                link = entry_title.find('a')
+                if link:
+                    # Update the href to use the new lowercased filenames
+                    current_href = link.get('href', '')
+                    # Apply the same normalization as in normalize_filename
+                    if current_href:
+                        base, ext = current_href.rsplit('.', 1) if '.' in current_href else (current_href, 'xhtml')
+                        normalized = base.lower().replace(' ', '-')
+                        normalized = re.sub(r'[-_]?final$', '', normalized)
+                        normalized = re.sub(r'-{2,}', '-', normalized).rstrip('-')
+                        new_href = f"{normalized}.{ext}"
+                        link['href'] = new_href
+                    li.append(link)
+                else:
+                    # No link, just add text
+                    li.string = entry_title.get_text(strip=True)
+            ol.append(li)
+        
+        # Also handle section dividers - convert to heading
+        for section_div in toc_container.find_all('div', class_='section-divider'):
+            # Skip section dividers for now as they're decorative
+            pass
+            
+        nav.append(ol)
+        
+        # Replace the div with nav
+        toc_container.replace_with(nav)
+        
+        path.write_text(str(soup), encoding='utf-8')
+        logging.info(f"Fixed TOC structure in {path.name}")
+
+
+def fix_svg_property(root: Path, opf_path: Path) -> None:
+    """Add SVG property to files that contain SVG content."""
+    # Check conclusion file for SVG content
+    conclusion_file = root / 'text' / '28-conclusion.xhtml'
+    if conclusion_file.exists():
+        content = conclusion_file.read_text(encoding='utf-8')
+        if '<svg' in content.lower():
+            # Read current OPF and add SVG property to conclusion
+            opf_content = opf_path.read_text(encoding='utf-8')
+            # Replace the conclusion item to add svg property
+            old_item = 'href="text/28-conclusion.xhtml" media-type="application/xhtml+xml"'
+            new_item = 'href="text/28-conclusion.xhtml" media-type="application/xhtml+xml" properties="svg"'
+            opf_content = opf_content.replace(old_item, new_item)
+            opf_path.write_text(opf_content, encoding='utf-8')
+            logging.info("Added SVG property to conclusion.xhtml in manifest")
 
 
 def restructure_quiz_key(path: Path) -> None:
@@ -319,6 +406,9 @@ def build_content_opf(root: Path, yaml_path: Path, opf_path: Path) -> None:
     spine_items = []
     for i, file_path in enumerate(sorted(xhtml_files)):
         rel_path = file_path.relative_to(root)
+        # Skip TOC file since it will be added separately as nav item
+        if rel_path.name == '3-tableofcontents.xhtml':
+            continue
         item_id = f"item{i+1}"
         manifest_items.append(
             f'<item id="{item_id}" href="{rel_path.as_posix()}" media-type="application/xhtml+xml"/>'
@@ -363,19 +453,31 @@ def build_content_opf(root: Path, yaml_path: Path, opf_path: Path) -> None:
                 )
     manifest_str = '\n        '.join(manifest_items)
     spine_str = '\n        '.join(spine_items)
+    import xml.sax.saxutils
+    
+    # Escape XML entities in metadata
+    title_escaped = xml.sax.saxutils.escape(metadata['title'])
+    creator_escaped = xml.sax.saxutils.escape(metadata['creator'])
+    rights_escaped = xml.sax.saxutils.escape(metadata['rights']) if metadata['rights'] else ''
+    subject_escaped = xml.sax.saxutils.escape(metadata['subject']) if metadata['subject'] else ''
+    
+    from datetime import datetime, timezone
+    now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
+    
     opf_content = f'''<?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="book-id" version="3.0">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <dc:title>{metadata['title']}</dc:title>
-    <dc:creator>{metadata['creator']}</dc:creator>
+    <dc:title>{title_escaped}</dc:title>
+    <dc:creator>{creator_escaped}</dc:creator>
     <dc:language>{metadata['language']}</dc:language>
     <dc:identifier id="book-id">{metadata['identifier']}</dc:identifier>
-    {f"<dc:subject>{metadata['subject']}</dc:subject>" if metadata['subject'] else ''}
-    {f"<dc:rights>{metadata['rights']}</dc:rights>" if metadata['rights'] else ''}
+    <meta property="dcterms:modified">{now}</meta>
+    {f"<dc:subject>{subject_escaped}</dc:subject>" if metadata['subject'] else ''}
+    {f"<dc:rights>{rights_escaped}</dc:rights>" if metadata['rights'] else ''}
   </metadata>
   <manifest>
         {manifest_str}
-    <item id="nav" href="3-TableOfContents.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="nav" href="text/3-tableofcontents.xhtml" media-type="application/xhtml+xml" properties="nav"/>
   </manifest>
   <spine>
         {spine_str}
@@ -439,13 +541,14 @@ def main():
     import argparse
     parser = argparse.ArgumentParser(description="Clean and package an EPUB project.")
     parser.add_argument('--project-dir', required=True, help='Root directory of the EPUB project (e.g., OEBPS)')
-    parser.add_argument('--yaml', default='book-map.yaml', help='Path to book-map.yaml relative to project root')
+    parser.add_argument('--yaml', default='book-map.yaml', help='Path to book-map.yaml relative to current working directory')
     parser.add_argument('--toc', default='3-TableOfContents.xhtml', help='Path to TOC XHTML relative to project root')
     parser.add_argument('--output', default='output.epub', help='Output EPUB file name (in parent dir)')
     parser.add_argument('--epubcheck', default='epubcheck.jar', help='Path to EPUBCheck JAR')
     args = parser.parse_args()
     project_root = Path(args.project_dir).resolve()
-    yaml_path = (project_root / args.yaml).resolve()
+    # YAML path is relative to current working directory, not project root
+    yaml_path = Path(args.yaml).resolve()
     toc_path = (project_root / args.toc).resolve()
     mapping = rename_files(project_root)
     update_references_in_yaml(yaml_path, mapping)
@@ -455,8 +558,12 @@ def main():
         populate_quiz_options(file_path)
         if 'quizkey' in file_path.stem.lower():
             restructure_quiz_key(file_path)
+        # Fix TOC structure
+        if '3-tableofcontents.xhtml' in str(file_path):
+            fix_toc_structure(file_path)
     opf_path = project_root / 'content.opf'
     build_content_opf(project_root, yaml_path, opf_path)
+    fix_svg_property(project_root, opf_path)
     output_epub = project_root.parent / args.output
     create_epub(project_root, output_epub, opf_path)
     run_epubcheck(output_epub, Path(args.epubcheck))

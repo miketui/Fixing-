@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <package xmlns="http://www.idpf.org/2007/opf" unique-identifier="book-id" version="3.0">
   <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
-    <dc:title>Untitled Book</dc:title>
-    <dc:creator>Unknown Author</dc:creator>
-    <dc:language>en</dc:language>
-    <dc:identifier id="book-id">urn:uuid:9265d4a4-477c-4291-97b6-9a4e18e3af81</dc:identifier>
-    
-    
+    <dc:title>Curls &amp; Contemplation: A Stylist’s Interactive Journey Journal</dc:title>
+    <dc:creator>MD Warren</dc:creator>
+    <dc:language>en-US</dc:language>
+    <dc:identifier id="book-id">urn:uuid:9fa5e2ef-5fd8-4f5b-9077-0b9e856cda3d</dc:identifier>
+    <meta property="dcterms:modified">2025-08-24T23:20:17Z</meta>
+    <dc:subject>Nonfiction, Beauty, Business, Personal Development, Hairstyling, Entrepreneurship, Professional Growth, Self-Help</dc:subject>
+    <dc:rights>© 2025 MD Warren. All rights reserved.</dc:rights>
   </metadata>
   <manifest>
         <item id="item1" href="text/1-titlepage.xhtml" media-type="application/xhtml+xml"/>
@@ -29,9 +30,8 @@
         <item id="item18" href="text/25-chapter-xiv-the-impact-of-ai-on-the-beauty-industry_.xhtml" media-type="application/xhtml+xml"/>
         <item id="item19" href="text/26-chapter-xv-cultivating-resilience-and-well-being-in-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
         <item id="item20" href="text/27-chapter-xvi-tresses-and-textures-embracing-diversity-in-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
-        <item id="item21" href="text/28-conclusion.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item21" href="text/28-conclusion.xhtml" media-type="application/xhtml+xml" properties="svg"/>
         <item id="item22" href="text/29quizkey.xhtml" media-type="application/xhtml+xml"/>
-        <item id="item23" href="text/3-tableofcontents.xhtml" media-type="application/xhtml+xml"/>
         <item id="item24" href="text/30-selfassessment.xhtml" media-type="application/xhtml+xml"/>
         <item id="item25" href="text/31-affirmationsclose.xhtml" media-type="application/xhtml+xml"/>
         <item id="item26" href="text/32-continuedlearningcommitment-2.xhtml" media-type="application/xhtml+xml"/>
@@ -54,40 +54,40 @@
         <item id="item43" href="text/9-chapter-i-unveiling-your-creative-odyssey_.xhtml" media-type="application/xhtml+xml"/>
         <item id="style" href="styles/style.css" media-type="text/css"/>
         <item id="fonts" href="styles/fonts.css" media-type="text/css"/>
-        <item id="chapter_iii_quote" href="images/chapter-iii-quote.JPEG" media-type="image/jpeg"/>
-        <item id="preface_quote" href="images/preface-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_ii_quote" href="images/chapter-ii-quote.JPEG" media-type="image/jpeg"/>
-        <item id="endnote_marker" href="images/endnote-marker.PNG" media-type="image/png"/>
-        <item id="part_border" href="images/part-border.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_frame" href="images/chapter-frame.PNG" media-type="image/png"/>
-        <item id="chapter_x_quote" href="images/chapter-x-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_xiv_quote" href="images/chapter-xiv-quote.JPEG" media-type="image/jpeg"/>
-        <item id="quote_marks" href="images/quote-marks.PNG" media-type="image/png"/>
-        <item id="chapter_iv_quote" href="images/chapter-iv-quote.JPEG" media-type="image/jpeg"/>
-        <item id="brushstroke" href="images/brushstroke.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_xvi_quote" href="images/chapter-xvi-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_ix_quote" href="images/chapter-ix-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_xiii_quote" href="images/chapter-xiii-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_viii_quote" href="images/chapter-viii-quote.JPEG" media-type="image/jpeg"/>
-        <item id="conclusion_quote" href="images/conclusion-quote.JPEG" media-type="image/jpeg"/>
-        <item id="ruled_paper" href="images/ruled-paper.PNG" media-type="image/png"/>
-        <item id="chapter_vi_quote" href="images/chapter-vi-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_xii_quote" href="images/chapter-xii-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_i_quote" href="images/chapter-i-quote.JPEG" media-type="image/jpeg"/>
-        <item id="decorative_line" href="images/decorative-line.JPEG" media-type="image/jpeg"/>
-        <item id="Michael" href="images/Michael.JPEG" media-type="image/jpeg"/>
-        <item id="crown_ornament" href="images/crown-ornament.PNG" media-type="image/png"/>
-        <item id="chapter_vii_quote" href="images/chapter-vii-quote.JPEG" media-type="image/jpeg"/>
-        <item id="chapter_xi_quote" href="images/chapter-xi-quote.JPEG" media-type="image/jpeg"/>
-        <item id="quiz_checkbox" href="images/quiz-checkbox.PNG" media-type="image/png"/>
-        <item id="toc_divider" href="images/toc-divider.PNG" media-type="image/png"/>
-        <item id="chapter_xv_quote" href="images/chapter-xv-quote.JPEG" media-type="image/jpeg"/>
+        <item id="quiz_checkbox" href="images/quiz-checkbox.png" media-type="image/png"/>
+        <item id="chapter_xiv_quote" href="images/chapter-xiv-quote.jpeg" media-type="image/jpeg"/>
+        <item id="michael" href="images/michael.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_x_quote" href="images/chapter-x-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_vii_quote" href="images/chapter-vii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="part_border" href="images/part-border.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_ix_quote" href="images/chapter-ix-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_ii_quote" href="images/chapter-ii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="crown_ornament" href="images/crown-ornament.png" media-type="image/png"/>
+        <item id="chapter_xi_quote" href="images/chapter-xi-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xii_quote" href="images/chapter-xii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="decorative_line" href="images/decorative-line.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_vi_quote" href="images/chapter-vi-quote.jpeg" media-type="image/jpeg"/>
+        <item id="brushstroke" href="images/brushstroke.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xiii_quote" href="images/chapter-xiii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="preface_quote" href="images/preface-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xvi_quote" href="images/chapter-xvi-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_viii_quote" href="images/chapter-viii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="endnote_marker" href="images/endnote-marker.png" media-type="image/png"/>
+        <item id="conclusion_quote" href="images/conclusion-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_i_quote" href="images/chapter-i-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_iv_quote" href="images/chapter-iv-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_iii_quote" href="images/chapter-iii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xv_quote" href="images/chapter-xv-quote.jpeg" media-type="image/jpeg"/>
+        <item id="quote_marks" href="images/quote-marks.png" media-type="image/png"/>
+        <item id="ruled_paper" href="images/ruled-paper.png" media-type="image/png"/>
+        <item id="chapter_frame" href="images/chapter-frame.png" media-type="image/png"/>
+        <item id="toc_divider" href="images/toc-divider.png" media-type="image/png"/>
         <item id="librebaskerville_bold" href="fonts/librebaskerville-bold.woff2" media-type="font/woff2"/>
         <item id="librebaskerville_regular" href="fonts/librebaskerville-regular.woff2" media-type="font/woff2"/>
         <item id="Montserrat_Regular" href="fonts/Montserrat-Regular.woff2" media-type="font/woff2"/>
         <item id="librebaskerville_italic" href="fonts/librebaskerville-italic.woff2" media-type="font/woff2"/>
         <item id="Montserrat_Bold" href="fonts/Montserrat-Bold.woff2" media-type="font/woff2"/>
-    <item id="nav" href="3-TableOfContents.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+    <item id="nav" href="text/3-tableofcontents.xhtml" media-type="application/xhtml+xml" properties="nav"/>
   </manifest>
   <spine>
         <itemref idref="item1" />
@@ -112,7 +112,6 @@
         <itemref idref="item20" />
         <itemref idref="item21" />
         <itemref idref="item22" />
-        <itemref idref="item23" />
         <itemref idref="item24" />
         <itemref idref="item25" />
         <itemref idref="item26" />
