@@ -1,0 +1,353 @@
+/*
+  style.css — EPUB 3.2 layout for “Curls & Contemplation: A Stylist’s Interactive Journey Journal”
+  • Optimized for: EPUB 3.2, WCAG 2.2 AA, KDP/Apple Books
+  • Pairs with: /OEBPS/styles/fonts.css and assets under /OEBPS/fonts and /OEBPS/images
+  • Template coverage: title/front matter, part dividers, chapter title, chapter body, quiz, worksheet, image-quote, back matter
+*/
+
+/* Always import fonts FIRST for best odds on older readers */
+@import url('fonts.css');
+
+/* =============================
+   CSS CUSTOM PROPERTIES
+   ============================= */
+:root {
+  /* Core Colors */
+  --primary-color: #1a1a1a;
+  --secondary-color: #333333;
+  --accent-color: #1797a6; /* Teal highlights */
+  --border-color: #b2dfdb;
+  --background-light: #f7f9fa;
+  --background-worksheet: #fafafa;
+  --text-muted: #666666;
+  --text-light: #888888;
+  --white: #ffffff;
+
+  /* Special */
+  --crown-gold: #daa520;
+  --bible-quote-bg: #e0f2f1;
+  --dropcap-bg: #e0f7fa;
+
+  /* Gradients */
+  --title-gradient: linear-gradient(135deg, #1797a6 0%, #26a69a 50%, #4db6ac 100%);
+  --part-gradient: linear-gradient(to bottom, rgba(23,151,166,0.10) 0%, rgba(23,151,166,0.05) 100%);
+  --case-study-gradient: linear-gradient(135deg, #f8fffe 0%, #e0f7fa 100%);
+  --action-steps-gradient: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  --takeaways-gradient: linear-gradient(135deg, #e0f7fa 0%, #b2ebf2 100%);
+  --reflection-gradient: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%);
+
+  /* Shadows */
+  --shadow-light: 0 1px 3px rgba(23,151,166,0.07);
+  --shadow-medium: 0 2px 4px rgba(23,151,166,0.15);
+  --shadow-strong: 0 4px 8px rgba(23,151,166,0.25);
+  --shadow-content-box: 0 3px 10px rgba(0,0,0,0.10);
+
+  /* Layout */
+  --page-max-width: 35em;
+  --page-padding: 2rem;
+  --content-gap: 1.5rem;
+
+  /* Type Scale */
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-large: 1.125rem;
+  --font-size-xl: 1.25rem;
+  --font-size-2xl: 1.5rem;
+  --font-size-3xl: 2rem;
+  --font-size-4xl: 2.5rem;
+}
+
+/* =============================
+   TEMPLATE-SPECIFIC ROOT VARS
+   ============================= */
+.fm-title { --page-bg: var(--title-gradient); --text-color: var(--white); --text-align: center; }
+.fm-static { --page-bg: var(--white); }
+.fm-toc    { --page-bg: var(--white); }
+.worksheet { --page-bg: var(--background-worksheet); --input-border: var(--border-color); }
+.part      { --page-bg: var(--part-gradient); --text-align: center; }
+.chap-title{ --page-bg: var(--background-light); --text-align: left; }
+.chap-body { --page-bg: var(--white); }
+.chap-quiz { --page-bg: var(--white); }
+.image-quote { --page-bg: var(--white); --text-align: center; }
+
+/* =============================
+   GLOBAL RESET & BASE
+   ============================= */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { font-size: 100%; scroll-behavior: smooth; }
+body {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  font-weight: 400; line-height: 1.6; color: var(--primary-color);
+  background: var(--page-bg, var(--white));
+  margin: 0 auto; padding: var(--page-padding); text-align: var(--text-align, left);
+  max-width: var(--page-max-width);
+  orphans: 2; widows: 2; word-wrap: break-word; hyphens: auto;
+  text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================
+   PAGE BREAKS
+   ============================= */
+.page-break, .page-break-before { page-break-before: always; break-before: page; display: block; height: 0; visibility: hidden; }
+.page-break-after { page-break-after: always; break-after: page; }
+.avoid-break { page-break-inside: avoid; break-inside: avoid; }
+
+/* =============================
+   ACCESSIBILITY
+   ============================= */
+.sr-only { position: absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+:focus { outline: 2px solid var(--accent-color); outline-offset: 2px; }
+
+/* =============================
+   TYPOGRAPHY BASICS
+   ============================= */
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif;
+  font-weight: 400; line-height: 1.2; color: var(--primary-color);
+  page-break-after: avoid; break-after: avoid; margin: 1.5em 0 0.8em 0; text-align: center;
+}
+
+h1.chapter-title, .chapter-title-word, .chapter-number-text, .part-title {
+  font-family: 'Cinzel Decorative', Georgia, 'Times New Roman', serif;
+}
+
+h1 { font-size: var(--font-size-4xl); margin: 2em 0 1.2em 0; text-transform: uppercase; letter-spacing: 0.05em; }
+h2 { font-size: var(--font-size-3xl); margin: 1.5em 0 1em 0; }
+h3 { font-size: var(--font-size-2xl); margin: 1.2em 0 0.8em 0; }
+h4 { font-size: var(--font-size-xl); margin: 1em 0 0.6em 0; }
+h5,h6 { font-size: var(--font-size-large); margin: 0.8em 0 0.5em 0; }
+
+p { margin: 0 0 1em 0; text-indent: 1.2em; text-align: justify; hyphens: auto; orphans: 2; widows: 2; }
+
+p.first, p.first-paragraph, p.no-indent, .introduction p, .centered p { text-indent: 0; }
+p.centered { text-align: center; }
+
+.chap-body p:first-of-type { font-size: 1.1rem; color: var(--secondary-color); font-weight: 400; text-indent: 0; }
+
+a { color: var(--accent-color); text-decoration: none; transition: color 0.2s ease; }
+a:hover, a:focus { text-decoration: underline; color: var(--secondary-color); }
+
+ul,ol { margin: 0 0 1em 2em; padding: 0; }
+li { margin-bottom: 0.5em; line-height: 1.5; }
+
+/* =============================
+   CHAPTER CONTENT AREA HEADINGS
+   ============================= */
+.chap-body .content-area { line-height: 1.7; color: var(--primary-color); font-size: 1.05rem; }
+
+.chap-body .content-area h2 { font-size: 1.5rem; color: var(--accent-color); margin: 2.5rem 0 1.25rem 0; border-bottom: 3px solid var(--border-color); padding-bottom: 0.5rem; position: relative; text-align: left; }
+.chap-body .content-area h2::before { content: ""; position: absolute; bottom: -3px; left: 0; width: 50px; height: 3px; background: var(--accent-color); }
+
+.chap-body .content-area h3 { font-size: 1.25rem; color: var(--accent-color); margin: 2rem 0 1rem 0; position: relative; padding-left: 1rem; text-align: left; }
+.chap-body .content-area h3::before { content: "▶"; position: absolute; left: 0; color: var(--accent-color); font-size: 0.8rem; }
+
+.chap-body .content-area h4 { font-size: 1.1rem; color: var(--accent-color); margin: 1.5rem 0 0.75rem 0; font-weight: 600; text-align: left; }
+
+/* =============================
+   CASE STUDY
+   ============================= */
+.case-study { background: var(--case-study-gradient); border-left: 6px solid var(--accent-color); padding: 2rem; margin: 3rem 0; border-radius: 0 12px 12px 0; box-shadow: var(--shadow-content-box); position: relative; break-inside: avoid; }
+.case-study h3 { background: var(--accent-color); color: #fff; padding: 0.75rem 1.5rem; margin: -2rem -2rem 1.5rem -2rem; border-radius: 0 12px 0 0; font-size: 1.2rem; font-weight: 600; text-align: center; }
+.case-study p { margin: 1rem 0; line-height: 1.6; text-indent: 0; }
+
+/* =============================
+   ACTION STEPS
+   ============================= */
+.action-steps { background: var(--action-steps-gradient); padding: 2rem; border-radius: 12px; margin: 3rem 0; border: 2px solid #b3e5fc; position: relative; break-inside: avoid; }
+.action-steps h2 { color: #0369a1; margin: 0 0 1.5rem 0; text-align: center; font-size: 1.5rem; }
+.action-steps ol { counter-reset: action-counter; list-style: none; padding-left: 0; margin: 0; }
+.action-steps li { counter-increment: action-counter; background: #fff; margin: 1.5rem 0; padding: 1.5rem 1.5rem 1.5rem 4rem; border-radius: 10px; border-left: 5px solid var(--accent-color); box-shadow: var(--shadow-content-box); position: relative; }
+.action-steps li::before { content: counter(action-counter); background: var(--accent-color); color: #fff; width: 2rem; height: 2rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 1rem; position: absolute; left: 1.25rem; top: 1.25rem; box-shadow: 0 2px 6px rgba(23,151,166,0.3); }
+.action-steps li strong { color: #0369a1; font-size: 1.1rem; display: block; margin-bottom: 0.5rem; }
+.action-steps li p { text-indent: 0; margin: 0.5rem 0; }
+.action-steps li ul { margin-top: 0.75rem; padding-left: 1rem; }
+.action-steps li ul li { background: transparent; border: none; box-shadow: none; padding: 0.25rem 0; margin: 0.25rem 0; }
+.action-steps li ul li::before { content: "▸"; color: var(--accent-color); margin-right: 0.5rem; }
+
+/* =============================
+   KEY TAKEAWAYS
+   ============================= */
+.key-takeaways { background: var(--takeaways-gradient); padding: 2rem; border-radius: 12px; margin: 3rem 0; border: 2px solid #80deea; position: relative; break-inside: avoid; }
+.key-takeaways h2 { color: #0d7480; margin: 0 0 1.5rem 0; text-align: center; font-size: 1.5rem; }
+.key-takeaways ul { list-style: none; padding-left: 0; margin: 0; }
+.key-takeaways li { background: #fff; margin: 1rem 0; padding: 1.25rem 1.25rem 1.25rem 4rem; border-radius: 10px; border-left: 5px solid var(--accent-color); position: relative; box-shadow: var(--shadow-content-box); }
+.key-takeaways li::before { content: "💡"; position: absolute; left: 1.25rem; top: 50%; transform: translateY(-50%); width: 2rem; height: 2rem; display: flex; align-items: center; justify-content: center; }
+.key-takeaways li p { text-indent: 0; margin: 0.5rem 0; }
+
+/* =============================
+   REFLECTION QUESTIONS
+   ============================= */
+.reflection-questions { background: var(--reflection-gradient); border: 3px solid #ffb74d; border-radius: 12px; padding: 2rem; margin: 3rem 0; position: relative; break-inside: avoid; }
+.reflection-questions h2 { color: #ef6c00; border-bottom: 2px solid #ffb74d; margin: 0 0 1.5rem 0; text-align: center; font-size: 1.5rem; }
+.reflection-questions ol { counter-reset: question-counter; list-style: none; padding-left: 0; margin: 0; }
+.reflection-questions li { counter-increment: question-counter; margin: 1.5rem 0; padding: 1.25rem 1.25rem 1.25rem 4rem; background: #fff; border-radius: 10px; position: relative; box-shadow: var(--shadow-content-box); border-left: 5px solid #ff9800; }
+.reflection-questions li::before { content: "Q" counter(question-counter); background: #ff9800; color: #fff; padding: 0.4rem 0.6rem; border-radius: 6px; font-weight: bold; font-size: 0.9rem; position: absolute; left: 1.25rem; top: 1.25rem; }
+
+/* =============================
+   DROPCAP
+   ============================= */
+.dropcap { float: left; font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; font-weight: 700; font-size: 3.5em; line-height: 0.85; margin: 0.1em 0.18em 0 0; color: var(--accent-color); background: var(--dropcap-bg); padding: 0.15em 0.25em 0.05em 0.2em; border-radius: 0.3em; box-shadow: var(--shadow-light); text-transform: uppercase; }
+.dropcap-first-letter::first-letter { float: left; font-weight: 700; font-size: 3.5em; line-height: 0.85; margin: 0.1em 0.18em 0 0; color: var(--accent-color); background: var(--dropcap-bg); padding: 0.15em 0.25em 0.05em 0.2em; border-radius: 0.3em; box-shadow: var(--shadow-light); }
+
+/* =============================
+   FRONT MATTER — TITLE PAGE
+   ============================= */
+.fm-title { text-align: center; padding: 4rem 2rem; background: var(--title-gradient); color: var(--white); min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.title-main { font-size: 3rem; font-family: 'Cinzel Decorative', serif; margin-bottom: 1rem; text-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+.title-subtitle { font-size: 1.5rem; font-style: italic; margin-bottom: 2rem; opacity: 0.9; }
+.title-author { font-size: 1.25rem; font-weight: bold; letter-spacing: 0.05em; }
+
+/* =============================
+   TABLE OF CONTENTS
+   ============================= */
+.toc-container { margin: 2rem 0; }
+.toc-title { text-align: center; font-size: 2rem; margin-bottom: 2rem; color: var(--accent-color); }
+.toc-list { list-style: none; margin: 0; padding: 0; }
+.toc-item { margin-bottom: 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px dotted var(--border-color); }
+.toc-link { display: flex; justify-content: space-between; align-items: baseline; color: var(--primary-color); padding: 0.25rem 0; text-decoration: none; }
+.toc-link:hover { color: var(--accent-color); }
+.toc-title-text { flex: 1; }
+.toc-page-number { color: var(--text-muted); font-size: 0.9rem; margin-left: 1rem; }
+
+/* =============================
+   PART DIVIDER
+   ============================= */
+.part-divider { text-align: center; padding: 4rem 2rem; background: var(--part-gradient); min-height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.part-title { font-size: 2.5rem; color: var(--accent-color); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; }
+.part-subtitle { font-size: 1.25rem; color: var(--text-muted); font-style: italic; }
+.decorative-line { height: 20px; width: 200px; margin: 2rem auto; display: block; background-image: url('../images/decorative-line.JPEG'); background-repeat: no-repeat; background-position: center; background-size: contain; }
+
+/* =============================
+   CHAPTER TITLE PAGE (ACISS layout)
+   ============================= */
+.chap-title { padding: 3rem 2rem; background: var(--background-light); }
+.chapter-number-container { text-align: center; margin-bottom: 1.5rem; }
+.chapter-number-pill { display: inline-block; background: linear-gradient(45deg, #1797a6, #26a69a); border-radius: 999px; padding: 0.75rem 1.25rem; box-shadow: var(--shadow-medium); }
+.chapter-number-text { font-family: 'Cinzel Decorative', serif; font-size: 1.5rem; color: #ffffff; letter-spacing: 0.08em; }
+
+.chapter-title-stack { display: flex; align-items: flex-start; gap: 1.5rem; margin: 2rem 0; }
+.chapter-title-vertical { border-left: 4px solid var(--accent-color); padding-left: 1.5rem; display: flex; flex-direction: column; gap: 0.25rem; }
+.chapter-title-word { font-size: 2rem; color: var(--accent-color); font-weight: 700; text-transform: uppercase; letter-spacing: 0.02em; line-height: 1.1; text-align: left; }
+
+.bible-quote-container { background: var(--bible-quote-bg); border: 2px solid var(--accent-color); border-radius: 8px; padding: 1.25rem 1.5rem; margin: 1.75rem auto; max-width: 85%; text-align: center; font-style: italic; color: var(--secondary-color); box-shadow: var(--shadow-light); }
+.bible-quote-text { font-size: 1.05rem; margin-bottom: 0.3rem; }
+.bible-quote-reference { font-size: 0.9rem; color: var(--text-muted); font-weight: 700; font-style: normal; }
+.introduction-heading { font-size: 1rem; text-align: center; margin: 1.5rem 0 0.75rem 0; color: var(--primary-color); text-transform: uppercase; letter-spacing: 0.05em; }
+
+/* =============================
+   CHAPTER BODY
+   ============================= */
+.chap-body { padding: 2rem; }
+figure { margin: 1.5rem 0; text-align: center; }
+figure.align-left { float: left; margin: 0 1.5rem 1rem 0; max-width: 40%; }
+figure.align-right { float: right; margin: 0 0 1rem 1.5rem; max-width: 40%; }
+figure.align-center { margin: 1.5rem auto; max-width: 80%; }
+figcaption { font-size: 0.9rem; color: var(--text-muted); font-style: italic; margin-top: 0.5rem; text-align: center; }
+img { max-width: 100%; height: auto; border-radius: 4px; box-shadow: var(--shadow-light); }
+
+/* Endnotes */
+.endnotes { margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--border-color); }
+.endnotes-title { font-size: 1.25rem; margin-bottom: 1rem; color: var(--accent-color); }
+.endnote { margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--text-muted); position: relative; padding-left: 1.5rem; }
+.endnote::before { content: ""; background-image: url('../images/endnote-marker.PNG'); background-size: 0.8rem 0.8rem; background-repeat: no-repeat; background-position: center; width: 0.8rem; height: 0.8rem; position: absolute; left: 0; top: 0.3rem; display: block; }
+.endnote-number { font-weight: bold; color: var(--accent-color); }
+
+/* =============================
+   QUIZ (static, single page)
+   ============================= */
+.chap-quiz { padding: 2rem; background: var(--background-light); border-radius: 8px; }
+.quiz-title { text-align: center; color: var(--accent-color); margin-bottom: 1rem; font-size: 1.5rem; }
+.quiz-subtitle { text-align: center; color: var(--text-muted); margin-bottom: 1rem; }
+.quiz-instructions { text-align: center; margin-bottom: 1.5rem; }
+.quiz-questions { list-style: none; counter-reset: quiz-q; padding-left: 0; }
+.quiz-question { counter-increment: quiz-q; margin-bottom: 1.25rem; padding: 1rem; background: #fff; border: 1px solid #e0f2f1; border-radius: 8px; }
+.quiz-question::before { content: counter(quiz-q) ". "; font-weight: 700; color: var(--accent-color); margin-right: 0.25rem; }
+.quiz-options { margin: 0.75rem 0 0 1rem; list-style: none; }
+.quiz-option { margin: 0.35rem 0; }
+.quiz-option .opt-label { font-weight: 700; color: var(--accent-color); margin-right: 0.35rem; }
+
+/* =============================
+   WORKSHEET (static, single page)
+   ============================= */
+.worksheet { background-color: var(--background-worksheet); padding: 2rem; border-radius: 8px; }
+.worksheet-title { text-align: center; color: var(--accent-color); margin-bottom: 1.25rem; }
+.worksheet-section { margin-bottom: 1.5rem; }
+.worksheet-prompt { font-weight: 700; margin-bottom: 0.5rem; color: var(--secondary-color); }
+.worksheet-input { width: 100%; min-height: 4rem; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 4px; font-family: inherit; font-size: 1rem; resize: vertical; background: #fff; }
+
+/* =============================
+   IMAGE QUOTE (closing page)
+   ============================= */
+.image-quote { text-align: center; padding: 2rem; min-height: 80vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.image-quote figure { margin: 2rem 0; max-width: 90%; }
+.image-quote img { max-width: 100%; height: auto; border-radius: 8px; box-shadow: var(--shadow-medium); }
+.image-quote figcaption { font-family: 'Cinzel Decorative', serif; font-size: 0.9rem; color: var(--text-light); margin-top: 1rem; font-variant: small-caps; letter-spacing: 0.05em; }
+
+/* =============================
+   BLOCKQUOTES
+   ============================= */
+blockquote { margin: 2rem 0; padding: 1.5rem 2rem; border-left: 4px solid var(--accent-color); background: var(--background-light); font-style: italic; position: relative; border-radius: 0 8px 8px 0; box-shadow: var(--shadow-light); }
+blockquote p:last-child { margin-bottom: 0; }
+
+/* =============================
+   TABLES
+   ============================= */
+table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: #fff; box-shadow: var(--shadow-light); border-radius: 8px; overflow: hidden; }
+th,td { padding: 0.75rem 1rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+th { background: var(--background-light); font-weight: 700; color: var(--secondary-color); text-transform: uppercase; font-size: 0.9rem; letter-spacing: 0.02em; }
+tr:hover { background: rgba(23,151,166,0.02); }
+
+/* =============================
+   UTILITIES
+   ============================= */
+.text-center { text-align: center; } .text-left { text-align: left; } .text-right { text-align: right; } .text-justify { text-align: justify; }
+.mt-small { margin-top: 1rem; } .mt-medium { margin-top: 2rem; } .mt-large { margin-top: 3rem; }
+.mb-small { margin-bottom: 1rem; } .mb-medium { margin-bottom: 2rem; } .mb-large { margin-bottom: 3rem; }
+.font-small { font-size: var(--font-size-small); } .font-large { font-size: var(--font-size-large); } .font-xl { font-size: var(--font-size-xl); }
+.color-accent { color: var(--accent-color); } .color-muted { color: var(--text-muted); } .color-light { color: var(--text-light); }
+.weight-normal { font-weight: 400; } .weight-bold { font-weight: 700; }
+.italic { font-style: italic; } .uppercase { text-transform: uppercase; }
+
+/* =============================
+   RESPONSIVE
+   ============================= */
+@media screen and (max-width: 768px) {
+  :root { --page-padding: 1rem; --font-size-4xl: 2rem; --font-size-3xl: 1.75rem; --font-size-2xl: 1.5rem; }
+  body { padding: var(--page-padding); max-width: 100%; }
+  .chapter-title-stack { flex-direction: column; gap: 1rem; }
+  .chapter-title-word { font-size: 1.5rem; }
+  .bible-quote-container { padding: 1rem; margin: 1rem auto; max-width: 95%; }
+  figure.align-left, figure.align-right { float: none; margin: 1rem auto; max-width: 100%; }
+}
+
+@media screen and (max-width: 480px) {
+  .title-main { font-size: 2rem; }
+  .chapter-title-word { font-size: 1.25rem; }
+  .dropcap { font-size: 2.5em; }
+}
+
+/* =============================
+   REDUCED MOTION / HIGH CONTRAST
+   ============================= */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+
+@media (prefers-contrast: high) {
+  .case-study, .action-steps, .key-takeaways, .reflection-questions { border-width: 3px; }
+  .chap-body .content-area h2, .chap-body .content-area h3, .chap-body .content-area h4 { font-weight: 700; }
+}
+
+/* =============================
+   PRINT (KDP + proofing)
+   ============================= */
+@media print {
+  :root { --page-padding: 0.75in; --content-gap: 1rem; }
+  body { font-size: 11pt; line-height: 1.4; color: #000 !important; background: #fff !important; margin: 0; padding: var(--page-padding); max-width: none; }
+  h1,h2,h3,h4,h5,h6,.chapter-title-word,.quiz-title,.introduction-heading { color: #000 !important; }
+  .dropcap, .bible-quote-container, .quiz-container, .worksheet, blockquote, .case-study, .action-steps, .key-takeaways, .reflection-questions { background: none !important; box-shadow: none !important; }
+  .bible-quote-container, .quiz-question, .case-study, .action-steps, .key-takeaways, .reflection-questions { border: 1px solid #000 !important; }
+  .page-break, .page-break-before { page-break-before: always; }
+  .avoid-break, .quiz-question, .bible-quote-container, .case-study, .action-steps, .key-takeaways, .reflection-questions { break-inside: avoid; }
+  a { color: #000 !important; text-decoration: underline !important; }
+}

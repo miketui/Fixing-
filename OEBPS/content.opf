@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<package xmlns="http://www.idpf.org/2007/opf" unique-identifier="book-id" version="3.0">
+  <metadata xmlns:dc="http://purl.org/dc/elements/1.1/">
+    <dc:title>Curls &amp; Contemplation: A Stylist’s Interactive Journey Journal</dc:title>
+    <dc:creator>MD Warren</dc:creator>
+    <dc:language>en-US</dc:language>
+    <dc:identifier id="book-id">urn:uuid:9fa5e2ef-5fd8-4f5b-9077-0b9e856cda3d</dc:identifier>
+    <meta property="dcterms:modified">2025-08-24T23:20:17Z</meta>
+    <dc:subject>Nonfiction, Beauty, Business, Personal Development, Hairstyling, Entrepreneurship, Professional Growth, Self-Help</dc:subject>
+    <dc:rights>© 2025 MD Warren. All rights reserved.</dc:rights>
+  </metadata>
+  <manifest>
+        <item id="item1" href="text/1-titlepage.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item2" href="text/10-chapter-ii-refining-your-creative-toolkit_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item3" href="text/11-chapter-iii-reigniting-your-creative-fire_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item4" href="text/12-part-ii-building-your-professional-practice.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item5" href="text/13-chapter-iv-the-art-of-networking-in-freelance-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item6" href="text/14-chapter-v-cultivating-creative-excellence-through-mentorship_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item7" href="text/15-chapter-vi-mastering-the-business-of-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item8" href="text/16-chapter-vii-embracing-wellness-and-self-care_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item9" href="text/17-chapter-viii-advancing-skills-through-continuous-education_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item10" href="text/18-part-iii-advanced-business-strategies.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item11" href="text/19-chapter-ix-stepping-into-leadership_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item12" href="text/2-copyright.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item13" href="text/20-chapter-x-crafting-enduring-legacies_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item14" href="text/21-chapter-xi-advanced-digital-strategies-for-freelance-hairstylists_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item15" href="text/22-chapter-xii-financial-wisdom-building-sustainable-ventures_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item16" href="text/23-chapter-xiii-embracing-ethics-and-sustainability-in-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item17" href="text/24-part-iv-future-focused-growth.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item18" href="text/25-chapter-xiv-the-impact-of-ai-on-the-beauty-industry_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item19" href="text/26-chapter-xv-cultivating-resilience-and-well-being-in-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item20" href="text/27-chapter-xvi-tresses-and-textures-embracing-diversity-in-hairstyling_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item21" href="text/28-conclusion.xhtml" media-type="application/xhtml+xml" properties="svg"/>
+        <item id="item22" href="text/29quizkey.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item24" href="text/30-selfassessment.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item25" href="text/31-affirmationsclose.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item26" href="text/32-continuedlearningcommitment-2.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item27" href="text/33-acknowledgments.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item28" href="text/34-abouttheauthor.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item29" href="text/35-curlscontempcollective.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item30" href="text/36-journalingstart.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item31" href="text/37-manifestingjournal.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item32" href="text/38-journalpage.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item33" href="text/39-professionaldevelopment.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item34" href="text/4-dedication.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item35" href="text/40-smartgoals.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item36" href="text/41-selfcarejournal.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item37" href="text/42-visionjournal.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item38" href="text/43-doodlepage.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item39" href="text/5-selfassessment.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item40" href="text/6-affirmationodyssey.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item41" href="text/7-preface.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item42" href="text/8-part-i-foundations-of-creative-hairstyling.xhtml" media-type="application/xhtml+xml"/>
+        <item id="item43" href="text/9-chapter-i-unveiling-your-creative-odyssey_.xhtml" media-type="application/xhtml+xml"/>
+        <item id="style" href="styles/style.css" media-type="text/css"/>
+        <item id="fonts" href="styles/fonts.css" media-type="text/css"/>
+        <item id="quiz_checkbox" href="images/quiz-checkbox.png" media-type="image/png"/>
+        <item id="chapter_xiv_quote" href="images/chapter-xiv-quote.jpeg" media-type="image/jpeg"/>
+        <item id="michael" href="images/michael.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_x_quote" href="images/chapter-x-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_vii_quote" href="images/chapter-vii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="part_border" href="images/part-border.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_ix_quote" href="images/chapter-ix-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_ii_quote" href="images/chapter-ii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="crown_ornament" href="images/crown-ornament.png" media-type="image/png"/>
+        <item id="chapter_xi_quote" href="images/chapter-xi-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xii_quote" href="images/chapter-xii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="decorative_line" href="images/decorative-line.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_vi_quote" href="images/chapter-vi-quote.jpeg" media-type="image/jpeg"/>
+        <item id="brushstroke" href="images/brushstroke.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xiii_quote" href="images/chapter-xiii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="preface_quote" href="images/preface-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xvi_quote" href="images/chapter-xvi-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_viii_quote" href="images/chapter-viii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="endnote_marker" href="images/endnote-marker.png" media-type="image/png"/>
+        <item id="conclusion_quote" href="images/conclusion-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_i_quote" href="images/chapter-i-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_iv_quote" href="images/chapter-iv-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_iii_quote" href="images/chapter-iii-quote.jpeg" media-type="image/jpeg"/>
+        <item id="chapter_xv_quote" href="images/chapter-xv-quote.jpeg" media-type="image/jpeg"/>
+        <item id="quote_marks" href="images/quote-marks.png" media-type="image/png"/>
+        <item id="ruled_paper" href="images/ruled-paper.png" media-type="image/png"/>
+        <item id="chapter_frame" href="images/chapter-frame.png" media-type="image/png"/>
+        <item id="toc_divider" href="images/toc-divider.png" media-type="image/png"/>
+        <item id="librebaskerville_bold" href="fonts/librebaskerville-bold.woff2" media-type="font/woff2"/>
+        <item id="librebaskerville_regular" href="fonts/librebaskerville-regular.woff2" media-type="font/woff2"/>
+        <item id="Montserrat_Regular" href="fonts/Montserrat-Regular.woff2" media-type="font/woff2"/>
+        <item id="librebaskerville_italic" href="fonts/librebaskerville-italic.woff2" media-type="font/woff2"/>
+        <item id="Montserrat_Bold" href="fonts/Montserrat-Bold.woff2" media-type="font/woff2"/>
+    <item id="nav" href="text/3-tableofcontents.xhtml" media-type="application/xhtml+xml" properties="nav"/>
+  </manifest>
+  <spine>
+        <itemref idref="item1" />
+        <itemref idref="item2" />
+        <itemref idref="item3" />
+        <itemref idref="item4" />
+        <itemref idref="item5" />
+        <itemref idref="item6" />
+        <itemref idref="item7" />
+        <itemref idref="item8" />
+        <itemref idref="item9" />
+        <itemref idref="item10" />
+        <itemref idref="item11" />
+        <itemref idref="item12" />
+        <itemref idref="item13" />
+        <itemref idref="item14" />
+        <itemref idref="item15" />
+        <itemref idref="item16" />
+        <itemref idref="item17" />
+        <itemref idref="item18" />
+        <itemref idref="item19" />
+        <itemref idref="item20" />
+        <itemref idref="item21" />
+        <itemref idref="item22" />
+        <itemref idref="item24" />
+        <itemref idref="item25" />
+        <itemref idref="item26" />
+        <itemref idref="item27" />
+        <itemref idref="item28" />
+        <itemref idref="item29" />
+        <itemref idref="item30" />
+        <itemref idref="item31" />
+        <itemref idref="item32" />
+        <itemref idref="item33" />
+        <itemref idref="item34" />
+        <itemref idref="item35" />
+        <itemref idref="item36" />
+        <itemref idref="item37" />
+        <itemref idref="item38" />
+        <itemref idref="item39" />
+        <itemref idref="item40" />
+        <itemref idref="item41" />
+        <itemref idref="item42" />
+        <itemref idref="item43" />
+  </spine>
+</package>
