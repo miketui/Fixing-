@@ -87,9 +87,9 @@ def normalize_filename(name: str) -> str:
     stem, ext = os.path.splitext(name)
     normalized = stem.lower().replace(' ', '-')
     # Remove trailing _final or variations thereof
-    normalized = re.sub(r'-?final$', '', normalized)
-    # Collapse multiple consecutive hyphens
-    normalized = re.sub(r'-{2,}', '-', normalized)
+    normalized = re.sub(r'[-_]?final$', '', normalized)
+    # Collapse multiple consecutive hyphens and remove trailing hyphens
+    normalized = re.sub(r'-{2,}', '-', normalized).rstrip('-')
     return f"{normalized}{ext.lower()}"
 
 
@@ -290,12 +290,21 @@ def build_content_opf(root: Path, yaml_path: Path, opf_path: Path) -> None:
     metadata = {}
     if yaml_path.is_file():
         data = yaml.safe_load(yaml_path.read_text(encoding='utf-8'))
-        metadata['title'] = data.get('title', 'Untitled Book')
-        metadata['creator'] = data.get('author', 'Unknown Author')
-        metadata['language'] = data.get('language', 'en')
-        metadata['identifier'] = data.get('identifier', f"urn:uuid:{uuid.uuid4()}")
-        metadata['subject'] = data.get('subject', '')
-        metadata['rights'] = data.get('rights', '')
+        book_data = data.get('book', {})
+        metadata['title'] = book_data.get('title', 'Untitled Book')
+        metadata['creator'] = book_data.get('author', 'Unknown Author')
+        metadata['language'] = book_data.get('language', 'en')
+        identifier_data = book_data.get('identifier', {})
+        if isinstance(identifier_data, dict):
+            metadata['identifier'] = identifier_data.get('text', f"urn:uuid:{uuid.uuid4()}")
+        else:
+            metadata['identifier'] = str(identifier_data) if identifier_data else f"urn:uuid:{uuid.uuid4()}"
+        subjects = book_data.get('subject', [])
+        if isinstance(subjects, list):
+            metadata['subject'] = ', '.join(subjects)
+        else:
+            metadata['subject'] = str(subjects) if subjects else ''
+        metadata['rights'] = book_data.get('rights', '')
     else:
         metadata = {
             'title': 'Untitled Book',

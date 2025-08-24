@@ -1,0 +1,64 @@
+/*
+  fonts.css — Font definitions for EPUB
+  File paths are relative to /OEBPS/styles/  → fonts are in ../fonts/
+*/
+
+/* Libre Baskerville — body */
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../fonts/librebaskerville-regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../fonts/librebaskerville-italic.woff2') format('woff2');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Libre Baskerville';
+  src: url('../fonts/librebaskerville-bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Cinzel Decorative — chapter/part titles */
+@font-face {
+  font-family: 'Cinzel Decorative';
+  src: url('../fonts/CinzelDecorative.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Montserrat — supporting labels */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url('../fonts/Montserrat-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Assignments */
+body, p { font-family: 'Libre Baskerville', Georgia, 'Times New Roman', serif; }
+.chapter-title-word, .chapter-number-text, .part-title { font-family: 'Cinzel Decorative', Georgia, 'Times New Roman', serif; }
+.author, .publisher-info, .copyright, .metadata, .toc-page-number { font-family: 'Montserrat', Arial, 'Helvetica Neue', sans-serif; }
+
+/* Print fallbacks */
+@media print {
+  body { font-family: 'Times New Roman', Times, serif; }
+  .chapter-title-word, .chapter-number-text { font-family: 'Times New Roman', Times, serif; font-weight: 700; }
+  .author, .publisher-info { font-family: Arial, sans-serif; }
+}
